@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ video.title }}</h1>
+  <video controls>
+    <source src="{{ video.uploaded_file.url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <h2>Subtitles</h2>
+  <ul>
+    {% for subtitle in subtitles %}
+      <li>
+        {{ subtitle.start_time }} - {{ subtitle.end_time }}: {{ subtitle.text }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if timestamp %}
+    <script>
+      const video = document.querySelector('video');
+      video.currentTime = {{ timestamp }};
+      video.play();
+    </script>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Search Results</h1>
+  {% if subtitles %}
+    <ul>
+      {% for subtitle in subtitles %}
+        <li>
+          <a href="{% url 'video_detail' subtitle.video.id %}?t={{ subtitle.start_time }}">
+            {{ subtitle.video.title }} - {{ subtitle.start_time }} seconds
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+<a href="{% url 'video_detail' subtitle.video.id %}?t={{ subtitle.start_time }}">
+  Play Video
+</a>
+</body>
+</html>
